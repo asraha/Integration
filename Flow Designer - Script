@@ -1,0 +1,55 @@
+
+/*=========================START-----Exapme Outbound REST call to D&B===========
+	
+	var r = new sn_ws.RESTMessageV2('x_lnldd_scps.Get Company Details', 'GET Company Info');
+
+			r.setStringParameterNoEscape('dunsNumber', input.duns);
+			
+	    r.setStringParameterNoEscape('productId', 'cmpelk');                                  
+	    r.setStringParameterNoEscape('versionId', 'v2');
+                                   
+			//Replace spaces		
+			//input.duns = input.duns.replace(/ /g,"%20");				
+									
+				    var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+           
+				    var responseJson = JSON.parse(responseBody);
+					    	      
+	          //var errorCode = responseJson.error.errorCode;
+	
+	          var errorCode = null;
+	
+	        console.log(responseJson);
+	
+	        //console.log(responseJson.error.errorCode);
+	
+	         if (errorCode == null)
+	         {	
+		
+		        data.u_code = input.duns;
+		        data.u_company_name      = responseJson.organization.primaryName;
+		        data.u_company_address_1 = responseJson.organization.primaryAddress.streetAddress.line1;
+	          data.u_company_address_2 = responseJson.organization.primaryAddress.streetAddress.line2;
+		        data.u_city              = responseJson.organization.primaryAddress.addressLocality.name;
+	          data.u_county            = responseJson.organization.primaryAddress.addressCounty.name;
+		        data.u_country           = responseJson.organization.primaryAddress.addressCountry.name;
+		        data.u_zip               = responseJson.organization.primaryAddress.postalCode;	  
+	         }
+	        else
+		      {
+		      	 gs.addInfoMessage(errorCode+':'+errorMessage+': '+input.duns);	
+		      }
+	
+	data.u_code = input.duns;
+	221724714
+				data.u_company_name = responseJson.organization.primaryName;
+				data.u_company_address_1 = responseJson.organization.primaryAddress.streetAddress.line1;
+	      data.u_company_address_2 = responseJson.organization.primaryAddress.streetAddress.line2;
+		    data.u_city = responseJson.organization.primaryAddress.addressLocality.name;
+	      data.u_county = responseJson.organization.primaryAddress.addressCounty.name;
+		    data.u_country = responseJson.organization.primaryAddress.addressCountry.name;
+		    data.u_zip = responseJson.organization.primaryAddress.postalCode;
+	
+			=========================END===========*/		
